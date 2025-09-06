@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hospital Registration</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #dbeafe, #f0fdf4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .registration-card {
+      background-color: #ffffff;
+      padding: 2rem;
+      border-radius: 1.5rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 500px;
+    }
+
+    .registration-card h2 {
+      text-align: center;
+      color: #2563eb;
+      margin-bottom: 1.5rem;
+    }
+
+    form label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #374151;
+      font-weight: 600;
+    }
+
+    form input, form select {
+      width: 100%;
+      padding: 0.7rem 1rem;
+      margin-bottom: 1.2rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 0.75rem;
+      outline: none;
+      transition: border 0.3s;
+    }
+
+    form input:focus, form select:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .button-group button {
+      width: 48%;
+      padding: 0.75rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 0.75rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .submit-btn {
+      background-color: #2563eb;
+      color: white;
+    }
+
+    .submit-btn:hover {
+      background-color: #1e40af;
+    }
+
+    .reset-btn {
+      background-color: #f3f4f6;
+      color: #111827;
+    }
+
+    .reset-btn:hover {
+      background-color: #e5e7eb;
+    }
+
+    .error {
+      color: red;
+      font-size: 0.9rem;
+      margin-top: -1rem;
+      margin-bottom: 1rem;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="registration-card">
+    <h2>Hospital Registration Form</h2>
+    <form id="registrationForm">
+      <label for="fullName">Full Name</label>
+      <input type="text" id="fullName" required />
+
+      <label for="age">Age</label>
+      <input type="number" id="age" min="0" required />
+
+      <label for="gender">Gender</label>
+      <select id="gender" required>
+        <option value="">Select gender</option>
+        <option>Male</option>
+        <option>Female</option>
+        <option>Other</option>
+      </select>
+
+      <label for="contact">Contact Number</label>
+      <input type="tel" id="contact" pattern="[0-9]{10}" required />
+
+      <label for="email">Email Address</label>
+      <input type="email" id="email" required />
+
+      <label for="department">Department</label>
+      <select id="department" required>
+        <option value="">Select department</option>
+        <option>General Medicine</option>
+        <option>Pediatrics</option>
+        <option>Cardiology</option>
+        <option>Orthopedics</option>
+        <option>Neurology</option>
+      </select>
+
+      <div class="button-group">
+        <button type="submit" class="submit-btn">Register</button>
+        <button type="reset" class="reset-btn">Reset</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById('registrationForm');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault(); // Stop form from submitting
+
+      const fullName = document.getElementById('fullName').value.trim();
+      const age = document.getElementById('age').value;
+      const gender = document.getElementById('gender').value;
+      const contact = document.getElementById('contact').value;
+      const email = document.getElementById('email').value;
+      const department = document.getElementById('department').value;
+
+      if (!fullName || !age || !gender || !contact || !email || !department) {
+        alert('Please fill all fields correctly.');
+      } else if (!/^\d{10}$/.test(contact)) {
+        alert('Please enter a valid 10-digit contact number.');
+      } else {
+        alert(`Registration successful! Thank you, ${fullName}.`);
+        form.reset(); // Optional: reset form after success
+      }
+    });
+  </script>
+</body>
+    </html>
